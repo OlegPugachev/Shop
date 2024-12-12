@@ -2,16 +2,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var isAuth: Bool = true
+    
     @State private var email = ""
     @State private var password = ""
+    @State private var confirmPassword = ""
     
     var body: some View {
         VStack(spacing: 20) {
-            Text("Authorisation")
+            Text(isAuth ? "Authorisation" : "Registration")
+                .padding(12 )
+                //.padding(isAuth ? 16 : 24)
                 .padding()
                 .padding(.horizontal, 60)
                 .font(.title2.bold())
                 .background(.whiteAlpha)
+                //.cornerRadius(isAuth ? 30 : 12)
                 .cornerRadius(12)
             
             VStack {
@@ -29,10 +36,23 @@ struct ContentView: View {
                     .padding(8)
                     .padding(.horizontal, 12)
                 
+                if !isAuth {
+                    SecureField("Confirm password", text: $confirmPassword)
+                        .padding()
+                        .background(.whiteAlpha)
+                        .cornerRadius(12)
+                        .padding(8)
+                        .padding(.horizontal, 12)
+                }
+                
                 Button {
-                    print("Login")
+                    if isAuth {
+                        print("Login")
+                    } else {
+                        print("Registration")
+                    }
                 } label: {
-                    Text("Login")
+                    Text(isAuth ? "Login" : "Create Account")
                         .padding()
                         .frame(maxWidth: .infinity)
                         .background(LinearGradient(colors: [.yellow, .orange], startPoint: .leading, endPoint: .trailing))
@@ -44,33 +64,19 @@ struct ContentView: View {
                 }
                 
                 Button {
-                    print("Still Not With Us?")
+                    isAuth.toggle()
                     
-                    
-                    
-                    
-                    AuthService.shared.signIn(with: self.email, password: self.password) { result in
-                        switch result {
-                                case .success:
-                                print("Successfully logged in")
-//                                self.presentationDetents.removeAll()
-//                                self.presentationDetents.append(.destructive(Text("Logout"), action: {
-//                                    AuthService.shared.signIn(email: self.email, password: self.password) { result in
-//                                        switch result {
-//                                                
-//                                        }
-//                                    }
-//                                }
-                                
-                                case .failure(let error):
-                                print("Error logging in: \(error)")
-                                
-                        }
-                        
-                    }
-                    
+                    //print("Still Not With Us?")
+                    //                    AuthService.shared.signIn(with: self.email, password: self.password) { result in
+                    //                        switch result {
+                    //                            case .success:
+                    //                                print("Successfully logged in")
+                    //                            case .failure(let error):
+                    //                                print("Error logging in: \(error)")
+                    //                        }
+                    //                    }
                 } label: {
-                    Text("Still not with us?")
+                    Text(isAuth ? "Still not with us?" : "Have an account.")
                         .padding(.horizontal)
                         .frame(maxWidth: .infinity)
                         .cornerRadius(12)
@@ -85,11 +91,17 @@ struct ContentView: View {
             .padding(.top, 20)
             .background(.whiteAlpha)
             .cornerRadius(20)
-            .padding(20)
+            .padding(12)
             
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background( Image("background").resizable().ignoresSafeArea())
+        .background(
+            Image("background")
+            .resizable()
+            .ignoresSafeArea()
+            .blur(radius: isAuth ? 0 : 5)
+        )
+        .animation(Animation.easeInOut(duration: 0.3), value: isAuth)
     }
 }
 
