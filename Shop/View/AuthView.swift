@@ -1,13 +1,15 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct AuthView: View {
     
     @State private var isAuth: Bool = true
     
     @State private var email = ""
     @State private var password = ""
     @State private var confirmPassword = ""
+    
+    @State private var isTabViewShow = false
     
     var body: some View {
         VStack(spacing: 20) {
@@ -48,8 +50,13 @@ struct ContentView: View {
                 Button {
                     if isAuth {
                         print("Login")
+                        isTabViewShow.toggle()
                     } else {
                         print("Registration")
+                        self.email = ""
+                        self.password = ""
+                        self.confirmPassword = ""
+                        self.isAuth.toggle()
                     }
                 } label: {
                     Text(isAuth ? "Login" : "Create Account")
@@ -102,10 +109,13 @@ struct ContentView: View {
             .blur(radius: isAuth ? 0 : 5)
         )
         .animation(Animation.easeInOut(duration: 0.3), value: isAuth)
+        .fullScreenCover(isPresented: $isTabViewShow) {
+            MainTabBarView()
+        }
     }
 }
 
 #Preview {
-    ContentView()
+    AuthView()
 }
 
