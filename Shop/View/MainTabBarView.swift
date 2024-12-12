@@ -4,7 +4,10 @@ import SwiftUI
 struct MainTabBarView: View {
     var body: some View {
         TabView {
-            CatalogView().tabItem {
+            NavigationView {
+                CatalogView()
+            }
+                .tabItem {
                 VStack {
                     Image(systemName: "menucard")
                     Text("Сatalog")
