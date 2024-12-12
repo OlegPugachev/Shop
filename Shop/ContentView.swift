@@ -42,9 +42,33 @@ struct ContentView: View {
                         .font(.title3.bold())
                         .foregroundColor(.black)
                 }
-            
+                
                 Button {
                     print("Still Not With Us?")
+                    
+                    
+                    
+                    
+                    AuthService.shared.signIn(with: self.email, password: self.password) { result in
+                        switch result {
+                                case .success:
+                                print("Successfully logged in")
+//                                self.presentationDetents.removeAll()
+//                                self.presentationDetents.append(.destructive(Text("Logout"), action: {
+//                                    AuthService.shared.signIn(email: self.email, password: self.password) { result in
+//                                        switch result {
+//                                                
+//                                        }
+//                                    }
+//                                }
+                                
+                                case .failure(let error):
+                                print("Error logging in: \(error)")
+                                
+                        }
+                        
+                    }
+                    
                 } label: {
                     Text("Still not with us?")
                         .padding(.horizontal)
@@ -72,3 +96,4 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+
