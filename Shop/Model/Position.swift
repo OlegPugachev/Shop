@@ -1,7 +1,7 @@
 
 import Foundation
 
-struct Position {
+struct Position: Identifiable {
     var id: String
     var product: Product
     var count: Int
@@ -10,3 +10,5 @@ struct Position {
         return product.price * Double(self.count)
     }
 }
+
+

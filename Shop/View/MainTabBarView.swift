@@ -7,21 +7,25 @@ struct MainTabBarView: View {
             NavigationView {
                 CatalogView()
             }
-                .tabItem {
+            .tabItem {
                 VStack {
                     Image(systemName: "menucard")
                     Text("Сatalog")
                 }
             }
             
-            CartView(viewModel: CartViewModel()).tabItem {
-                Image(systemName: "cart")
-                Text("Cart")
+            CartView(viewModel: CartViewModel.shared).tabItem {
+                VStack {
+                    Image(systemName: "cart")
+                    Text("Cart")
+                }
             }
             
             ProfileView().tabItem {
-                Image(systemName: "person.circle")
-                Text("profile")
+                VStack {
+                    Image(systemName: "person.circle")
+                    Text("profile")
+                }
             }
         }
     }

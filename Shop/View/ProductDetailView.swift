@@ -7,6 +7,8 @@ struct ProductDetailView: View {
     @State var size =  memorySize.Gb256
     @State var count = 1
     
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
         
         VStack(alignment: .leading){
@@ -37,10 +39,18 @@ struct ProductDetailView: View {
                     Text(item.rawValue)
                 }
             }.pickerStyle(.segmented).padding()
-            
         }
+        
         Button {
-            print("add to cart")
+            var position = Position(id: UUID().uuidString,
+                                    product: viewModel.product,
+                                    count: self.count)
+            
+            position.product.price = size.getPrice(price: viewModel.product.price) * Double(self.count)
+            
+            CartViewModel.shared.addPosition(position)
+            presentationMode.wrappedValue.dismiss()
+            
         } label: {
             Text("Add to cart")
                 .padding()
