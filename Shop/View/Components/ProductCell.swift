@@ -1,9 +1,3 @@
-//
-//  ProductCell.swift
-//  Shop
-//
-//  Created by Oleg on 12.12.2024.
-//
 
 import SwiftUI
 
@@ -12,7 +6,7 @@ struct ProductCell: View {
     
     var body: some View {
         VStack(spacing: 2) {
-            Image("notebookPH")
+            Image("iPhone16")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: UIScreen.main.bounds.width * 0.45)
@@ -37,5 +31,5 @@ struct ProductCell: View {
 }
 
 #Preview {
-    ProductCell(product: Product(id: "1", title: "notebook", imageUrl: "Not found", price: 3, description: "notebook Description"))
+    ProductCell(product:  Product(id: "1", title: "iPhone 16 Pro Max", imageUrl: "Not found", price: 999, description: "Titanium design with larger 6.3-inch Super Retina XDR display, durable latest-generation Ceramic Shield, Action button, and USB-C with USB 3 speeds"))
 }

@@ -11,11 +11,12 @@ struct CatalogView: View {
             Section("Popular") {
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHGrid(rows: layout, spacing: 16) {
-                        ForEach(CatalogViewModel.shared.popularProducts, id: \.id) { product in
+                        ForEach(CatalogViewModel.shared.popularProducts, id: \.id) { item in
+                            let viewModel = ProductDetailViewModel(product: item)
                             NavigationLink {
-                                ProductDetailView(product: product)
+                                ProductDetailView(viewModel: viewModel)
                             } label: {
-                                ProductCell(product: product)
+                                ProductCell(product: item)
                                     .foregroundColor(.black)
                             }
                         }
@@ -26,11 +27,13 @@ struct CatalogView: View {
             Section("Products") {
                 ScrollView(.vertical, showsIndicators: false) {
                     LazyVGrid(columns: layout, spacing: 16) {
-                        ForEach(CatalogViewModel.shared.products, id: \.id) { product in
+                        ForEach(CatalogViewModel.shared.products, id: \.id) { item in
+                            let viewModel = ProductDetailViewModel(product: item)
                             NavigationLink {
-                                ProductDetailView(product: product)
+                                
+                                ProductDetailView(viewModel: viewModel)
                             } label: {
-                                ProductCell(product: product)
+                                ProductCell(product: item)
                                     .foregroundColor(.black)
                             }
                         }

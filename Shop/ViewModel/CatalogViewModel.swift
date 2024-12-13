@@ -7,26 +7,23 @@ class CatalogViewModel: ObservableObject {
     private init() {}
     
     var popularProducts: [Product] = [
-        Product(id: "1", title: "Basics Shagreen Journal", imageUrl: "Not found", price: 8.09, description: "Amazon Basics Shagreen Journal, 2-Pack, Black/Brown"),
-        
-        Product(id: "2", title: "Sticky Notes", imageUrl: "Not found", price: 6.99, description: "Early Buy Sticky Notes 6 Bright Color 6 Pads Self-Stick Notes 3 in * 3 in, 100 Sheets/Pad"),
-        Product(id: "3", title: "Rollerball Pen", imageUrl: "Not found", price: 5.59, description: "6Pcs Rollerball Pen, Including 3Pcs Pen Refills Blue and Pen Refills Black, Roller Ball Pen, Ballpoint Pen Refills, Smooth Writing, Pen Refills Black Ballpoint for School and Office Supplies (0.7mm)"),
-        Product(id: "4", title: "Sketching Pencils Set", imageUrl: "Not found", price: 3.97, description: "Sketching Pencils Set of 8 - B, 2B, 4B, 6B, 8B, HB, 2H, 4H - Drawing Pencils with Graphite Lead & Premium Wood are Ideal for Sketching, Shading & Doodling - For Beginners & Professionals")
+        Product(id: "1", title: "iPhone 16 Pro Max", imageUrl: "Not found", price: 999, description: "Titanium design with larger 6.3-inch Super Retina XDR display, durable latest-generation Ceramic Shield, Action button, and USB-C with USB 3 speeds"),
+        Product(id: "2", title: "iPhone 15 Pro Max", imageUrl: "Not found", price: 699, description: "6.1-inch durable color-infused glass and aluminum design with Ceramic Shield front"),
+        Product(id: "3", title: "iPhone 14 Pro Max", imageUrl: "Not found", price: 599, description: "6.1-inch durable design with Ceramic Shield and water and dust resistance"),
+        Product(id: "4", title: "iPhone SE", imageUrl: "Not found", price: 429, description: "4.7-inch Retina HD display that’s bright, colorful, and sharp")
     ]
     
     var products: [Product] = [
-        Product(id: "1", title: "Basics Shagreen Journal", imageUrl: "Not found", price: 8.09, description: "Amazon Basics Shagreen Journal, 2-Pack, Black/Brown"),
+        Product(id: "1", title: "iPhone 16 Pro Max", imageUrl: "Not found", price: 999, description: "Titanium design with larger 6.3-inch Super Retina XDR display, durable latest-generation Ceramic Shield, Action button, and USB-C with USB 3 speeds"),
+        Product(id: "2", title: "iPhone 15 Pro Max", imageUrl: "Not found", price: 699, description: "6.1-inch durable color-infused glass and aluminum design with Ceramic Shield front"),
+        Product(id: "3", title: "iPhone 14 Pro Max", imageUrl: "Not found", price: 599, description: "6.1-inch durable design with Ceramic Shield and water and dust resistance"),
+        Product(id: "4", title: "iPhone SE", imageUrl: "Not found", price: 429, description: "4.7-inch Retina HD display that’s bright, colorful, and sharp"),
         
-        Product(id: "2", title: "Sticky Notes", imageUrl: "Not found", price: 6.99, description: "Early Buy Sticky Notes 6 Bright Color 6 Pads Self-Stick Notes 3 in * 3 in, 100 Sheets/Pad"),
-        Product(id: "3", title: "Rollerball Pen", imageUrl: "Not found", price: 5.59, description: "6Pcs Rollerball Pen, Including 3Pcs Pen Refills Blue and Pen Refills Black, Roller Ball Pen, Ballpoint Pen Refills, Smooth Writing, Pen Refills Black Ballpoint for School and Office Supplies (0.7mm)"),
-        Product(id: "4", title: "Sketching Pencils Set", imageUrl: "Not found", price: 3.97, description: "Sketching Pencils Set of 8 - B, 2B, 4B, 6B, 8B, HB, 2H, 4H - Drawing Pencils with Graphite Lead & Premium Wood are Ideal for Sketching, Shading & Doodling - For Beginners & Professionals"),
         
-        
-        Product(id: "5", title: "Basics Shagreen Journal", imageUrl: "Not found", price: 8.09, description: "Amazon Basics Shagreen Journal, 2-Pack, Black/Brown"),
-        
-        Product(id: "6", title: "Sticky Notes", imageUrl: "Not found", price: 6.99, description: "Early Buy Sticky Notes 6 Bright Color 6 Pads Self-Stick Notes 3 in * 3 in, 100 Sheets/Pad"),
-        Product(id: "7", title: "Rollerball Pen", imageUrl: "Not found", price: 5.59, description: "6Pcs Rollerball Pen, Including 3Pcs Pen Refills Blue and Pen Refills Black, Roller Ball Pen, Ballpoint Pen Refills, Smooth Writing, Pen Refills Black Ballpoint for School and Office Supplies (0.7mm)"),
-        Product(id: "8", title: "Sketching Pencils Set", imageUrl: "Not found", price: 3.97, description: "Sketching Pencils Set of 8 - B, 2B, 4B, 6B, 8B, HB, 2H, 4H - Drawing Pencils with Graphite Lead & Premium Wood are Ideal for Sketching, Shading & Doodling - For Beginners & Professionals")
+        Product(id: "1", title: "iPhone 16 Pro Max", imageUrl: "Not found", price: 999, description: "Titanium design with larger 6.3-inch Super Retina XDR display, durable latest-generation Ceramic Shield, Action button, and USB-C with USB 3 speeds"),
+        Product(id: "2", title: "iPhone 15 Pro Max", imageUrl: "Not found", price: 699, description: "6.1-inch durable color-infused glass and aluminum design with Ceramic Shield front"),
+        Product(id: "3", title: "iPhone 14 Pro Max", imageUrl: "Not found", price: 599, description: "6.1-inch durable design with Ceramic Shield and water and dust resistance"),
+        Product(id: "4", title: "iPhone SE", imageUrl: "Not found", price: 429, description: "4.7-inch Retina HD display that’s bright, colorful, and sharp")
         
     ]
 }

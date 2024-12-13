@@ -1,9 +1,3 @@
-//
-//  AuthService.swift
-//  Shop
-//
-//  Created by Oleg on 12.12.2024.
-//
 
 import Foundation
 import FirebaseAuth
