@@ -7,7 +7,7 @@ struct Position: Identifiable {
     var count: Int
     
     var cost: Double {
-        return product.price * Double(self.count)
+        return product.price
     }
 }
 
