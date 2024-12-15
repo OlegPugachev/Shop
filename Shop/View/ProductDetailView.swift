@@ -12,7 +12,7 @@ struct ProductDetailView: View {
     var body: some View {
         
         VStack(alignment: .leading){
-            Image("iPhone16")
+            Image(viewModel.product.imageUrl)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .padding()
@@ -67,5 +67,5 @@ struct ProductDetailView: View {
 }
 
 #Preview {
-    ProductDetailView(viewModel: ProductDetailViewModel(product:  Product(id: "1", title: "iPhone 16 Pro Max", imageUrl: "Not found", price: 999, description: "Titanium design with larger 6.3-inch Super Retina XDR display, durable latest-generation Ceramic Shield, Action button, and USB-C with USB 3 speeds")))
+    ProductDetailView(viewModel: ProductDetailViewModel(product:  Product(id: "1", title: "iPhone 16 Pro Max", imageUrl: "iphone16", price: 999, description: "Titanium design with larger 6.3-inch Super Retina XDR display, durable latest-generation Ceramic Shield, Action button, and USB-C with USB 3 speeds")))
 }

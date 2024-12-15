@@ -6,7 +6,7 @@ struct ProductCell: View {
     
     var body: some View {
         VStack(spacing: 2) {
-            Image("iPhone16")
+            Image(product.imageUrl)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: UIScreen.main.bounds.width * 0.45)
@@ -17,7 +17,7 @@ struct ProductCell: View {
                 Text(product.title)
                     .font(.custom("AvenirNext-regular", size: 14))
                 Spacer()
-                Text(String(format: "%.2f", product.price) + " £")
+                Text(String(format: "%.2f", product.price) + " $")
                     .font(.custom("AvenirNext-bold", size: 14))
             }
             .padding(.horizontal, 6)
