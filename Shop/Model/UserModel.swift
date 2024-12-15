@@ -1,9 +1,3 @@
-//
-//  UserModel.swift
-//  Shop
-//
-//  Created by Oleg on 15.12.2024.
-//
 
 import Foundation
 struct UserModel: Identifiable {

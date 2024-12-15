@@ -53,7 +53,6 @@ struct AuthView: View {
                 Button {
                     if isAuth {
                         print("Authorisation through Firebase")
-                        
                         AuthService.shared.signIn(email: self.email, password: self.password) { result in
                             switch result {
                                 case .success(_):
@@ -67,7 +66,6 @@ struct AuthView: View {
                         }
                     } else {
                         print("Registration")
-                        
                         guard password == confirmPassword else {
                             self.alertMessage = "Passwords don't match"
                             self.isShowAlert.toggle()
@@ -80,7 +78,7 @@ struct AuthView: View {
                                 case .success(let user):
                                     print("Successfully logged in")
                                     alertMessage = "User \(user.email!) created successfully"
-                                    //self.isShowAlert.toggle()
+                                    self.isShowAlert.toggle()
                                     
                                     self.email = ""
                                     self.password = ""
