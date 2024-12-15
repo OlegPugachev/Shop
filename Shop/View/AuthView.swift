@@ -53,7 +53,18 @@ struct AuthView: View {
                 Button {
                     if isAuth {
                         print("Authorisation through Firebase")
-                        isTabViewShow.toggle()
+                        
+                        AuthService.shared.signIn(email: self.email, password: self.password) { result in
+                            switch result {
+                                case .success(_):
+                                    print("Authorisation successful")
+                                    isTabViewShow.toggle()
+                                case .failure(let error):
+                                    print("Error: \(error)")
+                                    alertMessage = "Error authorisation: \(error.localizedDescription)"
+                                    isShowAlert.toggle()
+                            }
+                        }
                     } else {
                         print("Registration")
                         
@@ -63,7 +74,7 @@ struct AuthView: View {
                             return
                         }
                         
-                        AuthService.shared.signUp(with: email, password: password) { result in
+                        AuthService.shared.signUp(email: email, password: password) { result in
                             
                             switch result {
                                 case .success(let user):
@@ -139,7 +150,9 @@ struct AuthView: View {
         )
         .animation(Animation.easeInOut(duration: 0.3), value: isAuth)
         .fullScreenCover(isPresented: $isTabViewShow) {
-            MainTabBarView()
+            
+            let mainTabBarView = MainTabBarViewModel(user: AuthService.shared.currentUser!)
+            MainTabBarView(viewModel: mainTabBarView)
         }
     }
 }
