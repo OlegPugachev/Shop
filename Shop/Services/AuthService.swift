@@ -21,6 +21,16 @@ class AuthService {
         
         auth.createUser(withEmail: email, password: password) {result, error in
             if let result = result {
+                let newUser = UserModel(id: result.user.uid, name: "", phone: 0, address: "")
+                DataBaseService.shared.setUser(user: newUser)  { resultDb in
+                    switch resultDb {
+                        case.success(_):
+                            completion(.success(result.user))
+                        case .failure(let error):
+                            completion(.failure(error))
+                    }
+                }
+                
                 completion(.success(result.user))
             } else if let error = error {
                 completion(.failure(error))

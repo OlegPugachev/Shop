@@ -5,9 +5,9 @@ struct AuthView: View {
     
     @State private var isAuth: Bool = true
     
-    @State private var email = ""
-    @State private var password = ""
-    @State private var confirmPassword = ""
+    @State private var email = "test@test.com"
+    @State private var password = "123456789"
+    @State private var confirmPassword = "123456789"
     @State private var isTabViewShow = false
     
     @State private var isShowAlert: Bool = false
@@ -80,7 +80,7 @@ struct AuthView: View {
                                 case .success(let user):
                                     print("Successfully logged in")
                                     alertMessage = "User \(user.email!) created successfully"
-                                    self.isShowAlert.toggle()
+                                    //self.isShowAlert.toggle()
                                     
                                     self.email = ""
                                     self.password = ""
@@ -108,16 +108,6 @@ struct AuthView: View {
                 
                 Button {
                     isAuth.toggle()
-                    
-                    //print("Still Not With Us?")
-                    //                    AuthService.shared.signIn(with: self.email, password: self.password) { result in
-                    //                        switch result {
-                    //                            case .success:
-                    //                                print("Successfully logged in")
-                    //                            case .failure(let error):
-                    //                                print("Error logging in: \(error)")
-                    //                        }
-                    //                    }
                 } label: {
                     Text(isAuth ? "Still not with us?" : "Have an account.")
                         .padding(.horizontal)
@@ -128,7 +118,6 @@ struct AuthView: View {
                         .font(.title3.bold())
                         .foregroundColor(.secondary)
                 }
-                
             }
             .padding()
             .padding(.top, 20)
