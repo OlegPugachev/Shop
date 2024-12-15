@@ -15,7 +15,7 @@ class AuthService {
         auth.currentUser
     }
     
-    func signIn(with email: String,
+    func signUp(with email: String,
                 password: String, completion: @escaping (Result<User, Error>) -> ()) {
         
         auth.createUser(withEmail: email, password: password) {result, error in
