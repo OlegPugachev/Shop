@@ -52,20 +52,20 @@ struct AuthView: View {
                 
                 Button {
                     if isAuth {
-                        print("Authorisation through Firebase")
+                        dump("Authorisation through Firebase")
                         AuthService.shared.signIn(email: self.email, password: self.password) { result in
                             switch result {
                                 case .success(_):
-                                    print("Authorisation successful")
+                                    dump("Authorisation successful")
                                     isTabViewShow.toggle()
                                 case .failure(let error):
-                                    print("Error: \(error)")
+                                    dump("Error: \(error)")
                                     alertMessage = "Error authorisation: \(error.localizedDescription)"
                                     isShowAlert.toggle()
                             }
                         }
                     } else {
-                        print("Registration")
+                        dump("Registration")
                         guard password == confirmPassword else {
                             self.alertMessage = "Passwords don't match"
                             self.isShowAlert.toggle()
@@ -76,7 +76,7 @@ struct AuthView: View {
                             
                             switch result {
                                 case .success(let user):
-                                    print("Successfully logged in")
+                                    dump("Successfully logged in")
                                     alertMessage = "User \(user.email!) created successfully"
                                     self.isShowAlert.toggle()
                                     
@@ -86,7 +86,7 @@ struct AuthView: View {
                                     self.isAuth.toggle()
                                     
                                 case .failure(let error):
-                                    print("Error logging in: \(error)")
+                                    dump("Error logging in: \(error)")
                                     alertMessage = "Error creating user: \(error.localizedDescription)"
                                     self.isShowAlert.toggle()
                             }

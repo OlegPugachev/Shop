@@ -24,13 +24,13 @@ struct ProfileView: View {
                     .confirmationDialog("Where can I get avatar?", isPresented: $isAvaAlertPresented) {
                         
                         Button {
-                            print("Library")
+                            dump("Library")
                         } label: {
                             Text ("Library")
                         }
                         
                         Button {
-                            print("Camera")
+                            dump("Camera")
                         } label: {
                             Text("Camera")
                         }
