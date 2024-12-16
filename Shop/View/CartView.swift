@@ -42,6 +42,18 @@ struct CartView: View {
                 }
                 
                 Button {
+                    dump("Order")
+                    var order = Order(userId: AuthService.shared.currentUser!.uid, date: Date(), status: OrderStatus.new.rawValue)
+                    
+                    order.positions = self.viewModel.positions
+                    DataBaseService.shared.setOrder(order: order) { result in
+                        switch result {
+                            case .success(let order):
+                                dump(order.cost)
+                            case .failure(let error):
+                                dump("Order failed:" + error.localizedDescription)
+                        }
+                    }
                     
                 } label: {
                     Text("Order")
