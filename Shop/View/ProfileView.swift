@@ -7,6 +7,8 @@ struct ProfileView: View {
     @State var isQuitAlertPresented: Bool = false
     @State var isAuthViewPresented: Bool = false
     
+    @StateObject var viewModel: ProfileViewModel
+    
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
             HStack(spacing: 16) {
@@ -35,16 +37,22 @@ struct ProfileView: View {
                     }
                 
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("Bjarne Stroustrup")
-                        .bold()
-                    Text("+1 234 567 890")
-                }
+                    
+                    TextField("Name", text: $viewModel.profile.name)
+                        .font(.body.bold())
+                    HStack {
+                        Text("Phone:").bold()
+                        TextField("Phone", value: $viewModel.profile.phone, format: IntegerFormatStyle.number)
+                            .keyboardType(.phonePad)
+                            //.mask(PhoneMask())
+                    }
             }
+            }.padding()
             
             VStack(alignment: .leading, spacing: 8) {
                 Text("Leveransadress:").bold()
-                Text("Apt 14 Kaffevej 5 2610 Rødovre, H DNK")
-            }.multilineTextAlignment(.leading)
+                TextField("Your address", text: $viewModel.profile.address)
+            }.padding(.horizontal)
             
             
             //orders
@@ -71,10 +79,17 @@ struct ProfileView: View {
                     AuthView() // stub
                 }
         }
+        .onSubmit {
+            dump("On Submit")
+            viewModel.setProfile()
+        }
+        .onAppear {
+            self.viewModel.getProfile()
+        }
         
     }
 }
 
 #Preview {
-    ProfileView()
+    ProfileView(viewModel: ProfileViewModel(profile: UserModel(id: "", name: "John Doe", phone: 80502828280, address: "Your address")))
 }

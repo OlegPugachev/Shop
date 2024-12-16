@@ -23,7 +23,7 @@ class AuthService {
             if let result = result {
                 
                 let newUser = UserModel(id: result.user.uid, name: "", phone: 0, address: "")
-                DataBaseService.shared.setUser(user: newUser)  { resultDb in
+                DataBaseService.shared.setProfile(user: newUser)  { resultDb in
                     switch resultDb {
                         case.success(_):
                             completion(.success(result.user))
