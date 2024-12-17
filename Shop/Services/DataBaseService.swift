@@ -28,7 +28,10 @@ class DataBaseService {
     }
     
     func getProfile(completion: @escaping (Result<UserModel, Error>) -> () ) {
-        usersRef.document(AuthService.shared.currentUser!.uid).getDocument { docSnapshot, error in
+        
+        guard let currentUser = AuthService.shared.currentUser else { return }
+        
+        usersRef.document(currentUser.uid).getDocument { docSnapshot, error in
             guard let snapshot = docSnapshot else { return }
             guard let data = snapshot.data() else { return }
             guard let userName = data["name"] as? String else { return }
@@ -61,6 +64,30 @@ class DataBaseService {
         }
     }
     
+    func getOrders(by userId: String?, completion: @escaping(Result<[Order], Error>) ->()) {
+        self.ordersRef.getDocuments { qSnap, error in
+       
+            if let qSnap = qSnap {
+                var orders: [Order] = [Order]()
+                
+                for doc in qSnap.documents{
+                    if let userId = userId {
+                        if let order = Order(doc: doc), order.userId == userId {
+                            orders.append(order)
+                        }
+                    } else { // TODO: for admin
+                        if let order = Order(doc: doc) {
+                            orders.append(order)
+                        }
+                    }
+                }
+                completion(.success(orders))
+            } else if let error = error {
+                completion(.failure(error))
+            }
+        }
+    }
+    
     func setPositions(to orderId: String,
                      positions: [Position],
                      completion: @escaping (Result<[Position], Error>) -> ()) {
@@ -72,6 +99,5 @@ class DataBaseService {
         }
         completion(.success(positions))
     }
-    
 }
 

@@ -3,9 +3,22 @@ import Foundation
 
 class ProfileViewModel: ObservableObject {
     @Published var profile: UserModel
+    @Published var orders: [Order] = [Order]()
     
     init(profile: UserModel) {
         self.profile = profile
+    }
+    
+    func getOrders() {
+        DataBaseService.shared.getOrders (by: AuthService.shared.currentUser?.accessibilityHint) { result in
+            switch result {
+                case .success(let orders):
+                    self.orders = orders
+                    dump("Total orders: \( orders.count)")
+                case .failure(let error):
+                    dump("getOrders method error: \(error.localizedDescription)")
+            }
+        }
     }
     
     func setProfile() {

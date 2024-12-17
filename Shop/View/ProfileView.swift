@@ -57,7 +57,14 @@ struct ProfileView: View {
             
             //orders
             List {
-                Text("Your orders")
+                if viewModel.orders.count == 0 {
+                    Text("Your orders")
+                } else {
+                    ForEach(viewModel.orders, id: \.id) { Order in
+                        OrderCell(order: Order)
+                        
+                    }
+                }
             }.listStyle(.plain)
             
             Button {
@@ -85,11 +92,12 @@ struct ProfileView: View {
         }
         .onAppear {
             self.viewModel.getProfile()
+            self.viewModel.getOrders()
         }
         
     }
 }
 
 #Preview {
-    ProfileView(viewModel: ProfileViewModel(profile: UserModel(id: "", name: "John Doe", phone: 80502828280, address: "Your address")))
+    ProfileView(viewModel: ProfileViewModel(profile: UserModel(id: "rrrrr", name: "John Doe", phone: 80502828280, address: "Your address")))
 }
