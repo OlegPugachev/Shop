@@ -2,12 +2,13 @@
 import SwiftUI
 
 struct OrderCell: View {
-    @State var order: Order = Order(userId: "", date: Date(), status: "New")
+    //@State var order: Order = Order(userId: "", date: Date(), status: "New")
+    var order: Order
     
     var body: some View {
         HStack {
             Text("\(order.date)")
-            Text("\(order.cost)")
+            Text(String(format: "%.2f", order.cost))
                 .bold()
                 .frame(width: 90)
             Text("\(order.status)")
@@ -17,6 +18,6 @@ struct OrderCell: View {
     }
 }
 
-#Preview {
-    OrderCell()
-}
+//#Preview {
+//    OrderCell()
+//}

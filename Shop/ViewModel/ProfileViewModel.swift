@@ -9,11 +9,38 @@ class ProfileViewModel: ObservableObject {
         self.profile = profile
     }
     
+    fileprivate func getPositions() {
+        for (index, order) in self.orders.enumerated() {
+            DataBaseService.shared.getPositions(by: order.id) { result in
+                switch result {
+                    case .success(let positions):
+                        self.orders[index].positions = positions
+                        dump(self.orders[index].cost)
+                    case .failure(let error):
+                        dump("getPositions method error: \(error.localizedDescription)")
+                }
+            }
+        }
+    }
+    
     func getOrders() {
         DataBaseService.shared.getOrders (by: AuthService.shared.currentUser?.accessibilityHint) { result in
             switch result {
                 case .success(let orders):
                     self.orders = orders
+                    self.getPositions()
+//                    for (index, order) in self.orders.enumerated() {
+//                        DataBaseService.shared.getPositions(by: order.id) { result in
+//                            switch result {
+//                                case .success(let positions):
+//                                    self.orders[index].positions = positions
+//                                    dump(self.orders[index].cost)
+//                                case .failure(let error):
+//                                    dump("getPositions method error: \(error.localizedDescription)")
+//                            }
+//                        }
+//                    }
+                    
                     dump("Total orders: \( orders.count)")
                 case .failure(let error):
                     dump("getOrders method error: \(error.localizedDescription)")

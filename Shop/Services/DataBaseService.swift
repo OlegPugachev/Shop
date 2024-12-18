@@ -66,7 +66,7 @@ class DataBaseService {
     
     func getOrders(by userId: String?, completion: @escaping(Result<[Order], Error>) ->()) {
         self.ordersRef.getDocuments { qSnap, error in
-       
+            
             if let qSnap = qSnap {
                 var orders: [Order] = [Order]()
                 
@@ -88,9 +88,28 @@ class DataBaseService {
         }
     }
     
+    func getPositions(by orderId: String, completion: @escaping(Result<[Position], Error>) ->()) {
+        let positionsRef = ordersRef.document(orderId).collection("positions")
+        
+        positionsRef.getDocuments { qSnap, error in
+            if let qSnap = qSnap {
+                var positions = [Position]()
+                
+                for doc in qSnap.documents {
+                    if let position = Position(doc: doc) {
+                        positions.append(position)
+                    }
+                }
+                completion(.success(positions))
+            } else if let error {
+                completion(.failure(error))
+            }
+        }
+    }
+    
     func setPositions(to orderId: String,
-                     positions: [Position],
-                     completion: @escaping (Result<[Position], Error>) -> ()) {
+                      positions: [Position],
+                      completion: @escaping (Result<[Position], Error>) -> ()) {
         
         let positionRef = ordersRef.document(orderId).collection("positions")
         
