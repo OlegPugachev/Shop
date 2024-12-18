@@ -10,7 +10,16 @@ struct ShopApp: App {
     
     var body: some Scene {
         WindowGroup {
-            AuthView()
+            if let user = AuthService.shared.currentUser {
+                if user.uid == "etpCzUWRAwaC4Eus8TGF3xtmVtg2" {
+                    AdminOrdersView()
+                } else {
+                    let viewModel = MainTabBarViewModel(user: user)
+                    MainTabBarView(viewModel: viewModel)
+                }
+            } else {
+                AuthView()
+            }
         }
     }
 }

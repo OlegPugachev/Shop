@@ -9,7 +9,7 @@ class ProfileViewModel: ObservableObject {
         self.profile = profile
     }
     
-    fileprivate func getPositions() {
+    func getPositions() {
         for (index, order) in self.orders.enumerated() {
             DataBaseService.shared.getPositions(by: order.id) { result in
                 switch result {

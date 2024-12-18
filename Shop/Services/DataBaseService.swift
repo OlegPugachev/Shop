@@ -27,11 +27,9 @@ class DataBaseService {
         }
     }
     
-    func getProfile(completion: @escaping (Result<UserModel, Error>) -> () ) {
+    func getProfile(by userId: String? = nil, completion: @escaping (Result<UserModel, Error>) -> () ) {
         
-        guard let currentUser = AuthService.shared.currentUser else { return }
-        
-        usersRef.document(currentUser.uid).getDocument { docSnapshot, error in
+        usersRef.document(userId != nil ? userId! : AuthService.shared.currentUser!.uid).getDocument { docSnapshot, error in
             guard let snapshot = docSnapshot else { return }
             guard let data = snapshot.data() else { return }
             guard let userName = data["name"] as? String else { return }
