@@ -18,7 +18,7 @@ struct OrderView: View {
                 ForEach(viewModel.order.positions, id: \.id) { position in
                     PositionCell(position: position)
                 }
-                Text("Total: \(viewModel.order.cost) $").bold()
+                Text("Total: " + String(format: "%.2f", viewModel.order.cost) + "$").bold().padding(.leading, 15)
             }
         }.padding()
             .onAppear() {
