@@ -21,7 +21,6 @@ class AuthService {
         
         auth.createUser(withEmail: email, password: password) {result, error in
             if let result = result {
-                
                 let newUser = UserModel(id: result.user.uid, name: "", phone: 0, address: "")
                 DataBaseService.shared.setProfile(user: newUser)  { resultDb in
                     switch resultDb {
@@ -31,7 +30,6 @@ class AuthService {
                             completion(.failure(error))
                     }
                 }
-                
             } else if let error = error {
                 completion(.failure(error))
             }
@@ -50,4 +48,9 @@ class AuthService {
             }
         }
     }
+    
+    func signOut() {
+        try! auth.signOut()
+    }
+    
 }
