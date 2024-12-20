@@ -66,6 +66,7 @@
 				7CE2F75D2D0ACA4C00639C59 /* Sources */,
 				7CE2F75E2D0ACA4C00639C59 /* Frameworks */,
 				7CE2F75F2D0ACA4C00639C59 /* Resources */,
+				7C3D08FE2D158A800058DEB7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -131,6 +132,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7C3D08FE2D158A800058DEB7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "TAGS=\"TODO:|FIXME:\"\nERRORTAG=\"ERROR:\"\nfind \"${SRCROOT}\" \\( -name \"*.h\" -or -name \"*.m\" -or -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$|($ERRORTAG).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\" | perl -p -e \"s/($ERRORTAG)/ error: \\$1/\"\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7CE2F75D2D0ACA4C00639C59 /* Sources */ = {
@@ -273,6 +294,8 @@
 				DEVELOPMENT_TEAM = 62A5CT3ACW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "allow use of camera";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "allow to open gallery to select photos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -302,6 +325,8 @@
 				DEVELOPMENT_TEAM = 62A5CT3ACW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "allow use of camera";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "allow to open gallery to select photos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

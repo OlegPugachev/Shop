@@ -5,9 +5,14 @@ struct AuthView: View {
     
     @State private var isAuth: Bool = true
     
-    @State private var email = "test@test.com"
-    @State private var password = "123456789"
-    @State private var confirmPassword = "123456789"
+//    @State private var email = "test@test.com"
+//    @State private var password = "123456789"
+//    @State private var confirmPassword = "123456789"
+    
+    @State private var email = "admin@test.com"
+    @State private var password = "administrator"
+    @State private var confirmPassword = "administrator"
+    
     @State private var isTabViewShow = false
     
     @State private var isShowAlert: Bool = false
