@@ -11,7 +11,7 @@ struct ShopApp: App {
     var body: some Scene {
         WindowGroup {
             if let user = AuthService.shared.currentUser {
-                if user.uid == "QJFhpkzXxTUSmzJSkEIPqJhaM123" {
+                if user.uid == " QJFhpkzXxTUSmzJSkEIPqJhaM123" {
                     AdminOrdersView()
                 } else {
                     let viewModel = MainTabBarViewModel(user: user)

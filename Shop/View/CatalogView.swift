@@ -4,6 +4,7 @@ import SwiftUI
 struct CatalogView: View {
     
     let layout = [GridItem(.adaptive(minimum: UIScreen.main.bounds.width / 2.4))]
+    @StateObject var viewModel = CatalogViewModel()
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -27,7 +28,7 @@ struct CatalogView: View {
             Section("Products") {
                 ScrollView(.vertical, showsIndicators: false) {
                     LazyVGrid(columns: layout, spacing: 16) {
-                        ForEach(CatalogViewModel.shared.products, id: \.id) { item in
+                        ForEach(viewModel.products, id: \.id) { item in
                             let viewModel = ProductDetailViewModel(product: item)
                             NavigationLink {
                                 
@@ -41,9 +42,11 @@ struct CatalogView: View {
                 }
             }
         }.navigationTitle(Text("Catalog"))
+            .onAppear() {
+                self.viewModel.getProducts()
+            }
     }
 }
-
 
 #Preview {
     CatalogView()

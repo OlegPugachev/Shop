@@ -3,15 +3,16 @@ import SwiftUI
 
 struct ProductCell: View {
     var product: Product
+    @State var uiImage = UIImage(named: "iphone16")
     
     var body: some View {
         VStack(spacing: 2) {
-            Image(product.imageUrl)
+            Image(uiImage: uiImage!)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: UIScreen.main.bounds.width * 0.45)
-                //.clipped()
-                //.cornerRadius(16)
+            //.clipped()
+            //.cornerRadius(16)
             
             HStack{
                 Text(product.title)
@@ -24,9 +25,21 @@ struct ProductCell: View {
             .padding(.bottom, 6)
             
         }.frame(width: UIScreen.main.bounds.width * 0.45, height: UIScreen.main.bounds.width * 0.55 )
-            //.background(.white)
+        //.background(.white)
             .cornerRadius(16)
             .shadow(radius: 4)
+            .onAppear() {
+                StorageService.shared.downloadProductImage(id: self.product.id) { result in
+                    switch result {
+                        case .success(let data):
+                            if let img = UIImage(data: data) {
+                                self.uiImage = img
+                            }
+                        case .failure(let error):
+                            dump("Error downloading image: \(error.localizedDescription)")
+                    }
+                }
+            }
     }
 }
 

@@ -3,7 +3,7 @@ import SwiftUI
 
 struct ProductDetailView: View {
     
-    var viewModel: ProductDetailViewModel
+    @State var viewModel: ProductDetailViewModel
     @State var size =  memorySize.Gb256
     @State var count = 1
     
@@ -12,7 +12,7 @@ struct ProductDetailView: View {
     var body: some View {
         
         VStack(alignment: .leading){
-            Image(viewModel.product.imageUrl)
+            Image(uiImage: self.viewModel.image!)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .padding()
@@ -61,7 +61,11 @@ struct ProductDetailView: View {
                 .padding(.horizontal, 12)
                 .font(.title3.bold())
                 .foregroundColor(.black)
-        }.padding()
+        }
+        .padding()
+        .onAppear {
+            self.viewModel.getImage()
+        }
         Spacer()
     }
 }
