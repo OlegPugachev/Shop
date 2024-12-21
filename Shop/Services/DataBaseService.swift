@@ -122,16 +122,26 @@ class DataBaseService {
         completion(.success(positions))
     }
     
-    func setProduct(product: Product, image: Data, completion: @escaping (Result<Product, Error>) -> ()) {
-       
+    func setProduct(product: Product, completion: @escaping (Result<Product, Error>) -> ()) {
+        self.productsRef.document(product.id).setData(product.representation) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(product))
+            }
+        }
+    }
+    
+    func setProductWithImage(product: Product, image: Data, completion: @escaping (Result<Product, Error>) -> ()) {
         StorageService.shared.upload(id: product.id, image: image) { result in
             switch result {
-                case .success(let sizeInfo):
-                    self.ordersRef.document(product.id).setData(product.representation) { error in
-                        if let error = error {
-                            completion(.failure(error))
-                        } else {
-                            completion(.success(product))
+                case .success(_):
+                    self.setProduct(product: product) { res in
+                        switch res {
+                            case .success(let product):
+                                dump("setProduct: \(product.title)")
+                            case.failure(let error):
+                                dump("Error setProduct: \(error.localizedDescription)")
                         }
                     }
                 case .failure(let error):
